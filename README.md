@@ -271,8 +271,18 @@ if ( matches.length !== 0 ) {
 }
 ```
 
+## 关于1.10.X版本
+* 1.10版本开发者将大部分C函数符号清除了，直接分析几乎不太可能
+* 无意间打开1.9与1.10两个版本的文件进行对比找到思路，
+
+> 我们先从字符串入手，从1.9版本分析得出其在运行时使用字符串加载Frameworks中的库，对比WKBridge.framework这个字符串的引用，猜测其加载模块逻辑几乎没有变动，而1.9版本中加载模块的逻辑在入口点附近
+
+![image](res/07_start_with_WKBridge_framework.jpg)
+
+> 顺藤摸瓜找到VerifyLicense方法，对比看起来很像，继续对比可以找到其他关键函数
+
+![image](res/08_compare_with_1_9.jpg)
+
 ## 资源链接:
-* 文中使用的CSP版本为1.9.13，商店中最新版本为1.10，1.10版本内部Api大幅改动，无法使用上面的方法逆向
-* 脱壳后的: [ipa](https://pan.baidu.com/s/1LcIkVRtF3HLItnxhLTnYmA) Code: 3n3f
-* 逆向修改后的: [ipa](https://pan.baidu.com/s/1DDoBIafqGkcZlqJxegmMNA) Code: ipc9
+* 文中使用的CSP版本为1.9.13, 相关资源在Releases中
 * 资源仅供逆向学习交流使用, 请支持正版软件
